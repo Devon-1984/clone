@@ -1,0 +1,29 @@
+---
+import Popup from "./popup";
+import Menu from "./Menu.astro";
+
+const { data, Cross } = Astro.props;
+const page = data.landindPage;
+console.log();
+---
+
+<div class="p-5">
+  <img class="aspect-21/4 w-1/2" src={page.logo.url} />
+  <Menu />
+</div>
+<picture class="relative flex">
+  <img
+    class="object-cover aspect-2500/1668 h-screen w-screen"
+    src={page.hero.url}
+  />
+  <a
+    href="https://sweepwidget.com/c/97261-64fnqs5h"
+    class="top-10 right-5 left-auto absolute"
+  >
+    <Popup data={data} client:load />
+  </a>
+</picture>
+<div class="flex w-full p-5">
+  <img class="" src={page.logo.url} />
+  <Menu class="items-center ml-auto" />
+</div>

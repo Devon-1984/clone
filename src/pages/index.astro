@@ -1,0 +1,29 @@
+---
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
+
+import { executeQuery } from "../lib/datocms";
+import cross from "../assets/cross.svg";
+
+const QUERY = `
+{
+  landindPage {
+    logo {
+      url
+    }
+    hero {
+      url
+    }
+    ticket {
+      url
+    }
+  }
+}
+`;
+
+const data = await executeQuery(QUERY);
+---
+
+<Layout>
+  <Welcome data={data} Cross={cross} />
+</Layout>
