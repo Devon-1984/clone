@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import cross from "../assets/cross.svg";
 
-export default function Popup({ data }) {
+export default function Popup({ data, href }) {
   const page = data.landindPage;
   const [popup, setPopup] = useState(true);
 
@@ -10,15 +10,12 @@ export default function Popup({ data }) {
   return (
     <>
       <div className="relative">
-        <img className="max-w-87.5" src={page.ticket.url} />
+        <a href={href}><img className="max-w-87.5" src={page.ticket.url} /></a>
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            setPopup(false);
-          }}
+          onClick={() => setPopup(false)}
           className="absolute top-[1.15rem] right-[0.7rem] cursor-pointer"
         >
-          <img src={cross.src} />
+          <img src={cross.src} style={{ pointerEvents: "none" }} />
         </button>
       </div>
     </>

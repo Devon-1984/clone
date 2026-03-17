@@ -2,19 +2,51 @@
 
 ---
 
-<div class="flex mt-5 gap-5">
-  <div class="w-1/4"></div>
-  <div
-    class="w-1/2 flex gap-5 uppercase text-[12px] items-center tracking-wider"
-  >
-    <button class="uppercase tracking-wider">Retailers</button>
-    <a>Events</a>
-    <a>News</a>
-    <a>Sign up</a>
-    <a>Gift Card</a>
+<div class="flex gap-5 items-center">
+  <div class="w-1/4">
+    <slot name="prefix" />
   </div>
-  <div class="w-1/4 flex gap-5 text-[12px]">
-    <button class="uppercase tracking-wider ml-auto">Search</button>
-    <button class="uppercase tracking-wider">Cart</button>
+  <div class="w-1/2 flex gap-5 text-[12px] uppercase tracking-[0.06em] items-center">
+    <button class="menu-item uppercase">Retailers</button>
+    <a class="menu-item">Events</a>
+    <a class="menu-item">News</a>
+    <a class="menu-item">Sign up</a>
+    <a class="menu-item">Gift Card</a>
+  </div>
+  <div class="w-1/4 flex gap-5 text-[12px] uppercase tracking-[0.06em] items-center">
+    <button class="menu-item ml-auto uppercase">Search</button>
+    <button class="menu-item uppercase">Cart</button>
   </div>
 </div>
+
+<style>
+  .menu-item {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
+
+  .menu-item::before {
+    content: "";
+    background-color: #fff;
+    width: 6px;
+    height: 6px;
+    margin-bottom: 1px;
+    margin-right: 7.5px;
+    display: inline-block;
+  }
+
+  .menu-item:hover::before {
+    background-color: #000;
+    animation: blink-black 0.5s step-start infinite;
+  }
+
+  @keyframes blink-black {
+    0%, 100% { background-color: #000; }
+    50% { background-color: #fff; }
+  }
+</style>

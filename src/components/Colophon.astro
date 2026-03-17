@@ -1,0 +1,229 @@
+---
+---
+
+<div class="bg-white border-t border-gray-200 relative">
+
+  <!-- Main: nav columns (left) + newsletter (right) -->
+  <div class="flex justify-between flex-wrap">
+
+    <!-- Left: 4-column grid — Connect lands under Discover via 5-item wrapping -->
+    <div class="p-5 w-1/2 max-md:w-full">
+      <div class="grid grid-cols-4 max-md:grid-cols-2 w-full gap-4">
+
+        <!-- Col 1, Row 1: Discover -->
+        <div>
+          <p class="text-xs uppercase tracking-widest">Discover</p>
+          <div class="flex flex-col mt-5 gap-1.5 text-sm">
+            <a href="/sign-up">Sign Up</a>
+            <a href="/retailers?category=Fashion">Fashion</a>
+            <a href="/retailers?category=Food%20%2B%20Drink">Food + Drink</a>
+            <a href="/retailers?category=Lifestyle%20%2B%20Design">Lifestyle + Design</a>
+            <a href="/retailers?category=Health%20%2B%20Beauty">Health + Beauty</a>
+            <a href="/retailers?category=Stay">Stay</a>
+          </div>
+        </div>
+
+        <!-- Col 2, Row 1: James Street -->
+        <div>
+          <p class="text-xs uppercase tracking-widest">James Street</p>
+          <div class="flex flex-col mt-5 gap-1.5 text-sm">
+            <a href="/events">Events</a>
+            <a href="/news">News</a>
+            <a href="/about">About Us</a>
+          </div>
+        </div>
+
+        <!-- Col 3, Row 1: Contact -->
+        <div>
+          <p class="text-xs uppercase tracking-widest">Contact</p>
+          <div class="flex flex-col mt-5 gap-1.5 text-sm max-w-[250px]">
+            <p>Level 1 / 60 James Street<br />Fortitude Valley QLD 4006</p>
+            <a href="mailto:info@jamesst.com.au">info@jamesst.com.au</a>
+            <a href="mailto:leasing@jamesst.com.au">leasing@jamesst.com.au</a>
+          </div>
+        </div>
+
+        <!-- Col 4, Row 1: empty spacer (hidden on mobile) -->
+        <div class="max-md:hidden"></div>
+
+        <!-- Col 1, Row 2: Connect — sits directly under Discover -->
+        <div class="mt-7">
+          <p class="text-xs uppercase tracking-widest">Connect</p>
+          <div class="flex flex-col mt-5 gap-1.5 text-sm">
+            <a href="https://www.facebook.com/jamesstbne" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://www.instagram.com/jamesstbne/" target="_blank" rel="noreferrer">Instagram</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: newsletter, max-425px -->
+    <div class="p-5 max-w-[425px] text-sm">
+      <p class="pb-2.5">Get early access to events, dining offers, and exclusive stories.</p>
+      <div class="newsletter-form">
+        <div class="newsletter-row">
+          <div class="newsletter-input-wrap">
+            <input
+              type="email"
+              placeholder="Email address"
+              class="outline-none bg-transparent text-sm placeholder-gray-400 w-full"
+            />
+          </div>
+          <button class="newsletter-btn">Signup</button>
+        </div>
+        <p class="newsletter-disclaimer text-xs text-gray-500">
+          By clicking 'Submit' you agree to our Privacy Policy and Terms and Conditions.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gift card banner: centered, max-300px, hover reveals image + slides subtitle -->
+  <a
+    href="/gift-card"
+    class="group text-center flex flex-col items-center max-w-[300px] mx-auto p-5"
+  >
+    <p style="font-size: 24px; line-height: 1.2; white-space: nowrap;">Give the gift of James St.</p>
+
+    <!-- Image: hidden by default, fades in on hover -->
+    <div class="max-w-[150px] w-full aspect-[3/2] mt-5 overflow-hidden">
+      <img
+        src="https://www.datocms-assets.com/146200/1733199808-frame-28-1.png"
+        alt="James St Gift Card"
+        loading="lazy"
+        class="gift-card-img w-full h-full object-contain"
+      />
+    </div>
+
+    <!-- Subtitle: slides down from above on hover -->
+    <div class="gift-subtitle-clip">
+      <p class="gift-subtitle">Send a gift card to your loved ones.</p>
+    </div>
+  </a>
+
+  <!-- Bottom colophon bar -->
+  <div class="flex flex-col">
+    <div class="flex justify-between gap-5 p-5 text-xs flex-wrap">
+      <p>©2026 James Street Initiative</p>
+      <a href="/privacy">Privacy policy</a>
+      <a href="/terms">Terms and conditions</a>
+      <p>Site by <a href="https://groundcrew.com.au" target="_blank">Groundcrew</a></p>
+    </div>
+    <p class="max-w-[700px] text-xs mx-auto text-center mb-5 text-balance px-5">
+      James St acknowledges the Traditional Custodians of the Country on which we live, work and play.
+      We pay our respects to the Turrbal and Jagera people of Meanjin/Brisbane and all Aboriginal and
+      Torres Strait Islander Elders past and present.
+    </p>
+  </div>
+
+</div>
+
+<style>
+  .gift-card-img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  a:hover .gift-card-img {
+    opacity: 1;
+  }
+
+  .gift-subtitle-clip {
+    overflow: hidden;
+    height: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .gift-subtitle {
+    font-size: 0.875rem;
+    text-align: center;
+    position: relative;
+    transform: translateY(-100%);
+    transition: transform 0.25s 50ms ease;
+  }
+
+  a:hover .gift-subtitle {
+    transform: translateY(0);
+  }
+
+  /* Newsletter expand on click */
+  .newsletter-row {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s ease;
+  }
+
+  .newsletter-form.active .newsletter-row {
+    border-color: #d1d5db;
+  }
+
+  .newsletter-input-wrap {
+    flex-grow: 0;
+    width: 0;
+    overflow: hidden;
+    transition: flex-grow 0.4s ease, width 0.4s ease, margin-right 0.4s ease;
+  }
+
+  .newsletter-form.active .newsletter-input-wrap {
+    flex-grow: 1;
+    width: auto;
+    margin-right: 0.75rem;
+  }
+
+  .newsletter-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+  }
+
+  .newsletter-btn::before {
+    content: "";
+    background-color: #000;
+    width: 6px;
+    height: 6px;
+    margin-bottom: 1px;
+    margin-right: 7.5px;
+    display: inline-block;
+  }
+
+  .newsletter-btn:hover::before {
+    animation: blink 0.8s step-start infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .newsletter-disclaimer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.3s ease 0.3s, opacity 0.3s ease 0.3s, margin-top 0.3s ease 0.3s;
+  }
+
+  .newsletter-form.active .newsletter-disclaimer {
+    max-height: 3rem;
+    opacity: 1;
+    margin-top: 0.625rem;
+  }
+</style>
+
+<script>
+  document.querySelector('.newsletter-btn')?.addEventListener('click', function (e) {
+    const form = this.closest('.newsletter-form');
+    if (!form.classList.contains('active')) {
+      e.preventDefault();
+      form.classList.add('active');
+      setTimeout(() => form.querySelector('input')?.focus(), 420);
+    }
+  });
+</script>

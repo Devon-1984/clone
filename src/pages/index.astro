@@ -1,9 +1,11 @@
 ---
 import Welcome from "../components/Welcome.astro";
+import HeroGrid from "../components/HeroGrid.astro";
+import GiftCard from "../components/GiftCard.astro";
+import Colophon from "../components/Colophon.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { executeQuery } from "../lib/datocms";
-import cross from "../assets/cross.svg";
 
 const QUERY = `
 {
@@ -11,10 +13,16 @@ const QUERY = `
     logo {
       url
     }
+    ticket {
+      url
+    }
     hero {
       url
     }
-    ticket {
+    herogrid {
+      url
+    }
+    giftcard {
       url
     }
   }
@@ -25,5 +33,8 @@ const data = await executeQuery(QUERY);
 ---
 
 <Layout>
-  <Welcome data={data} Cross={cross} />
+  <Welcome data={data} />
+  <HeroGrid images={data.landindPage.herogrid} />
+  <GiftCard images={data.landindPage.giftcard} />
+  <Colophon />
 </Layout>

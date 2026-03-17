@@ -1,0 +1,76 @@
+---
+const { images } = Astro.props;
+const bg = Array.isArray(images) ? images[0] : images;
+const card1 = Array.isArray(images) ? images[1] : null;
+const card2 = Array.isArray(images) ? images[2] : null;
+---
+
+<div class="flex h-[100svh] m-auto">
+  <div class="w-full max-w-[1050px] m-auto px-5 flex">
+    <div class="relative h-[70vh] w-full overflow-hidden text-white">
+      <!-- Heading -->
+      <div class="relative z-10 p-5 text-center">
+        <p class="text-4xl font-serif">Give the Gift of James St</p>
+      </div>
+
+      <!-- Caption-blur bar: pinned to bottom with 40px gap, expands on hover -->
+      <div
+        class="group absolute bottom-10 left-0 right-0 z-10 mx-auto w-full max-w-[600px] text-center cursor-pointer"
+        style="backdrop-filter: blur(20px); background-color: #8282824d; border-radius: 3px; padding: 20px;"
+      >
+        <p class="text-sm tracking-wide">
+          Click here for one card, countless possibilities
+        </p>
+
+        <!-- Cards: hidden by default, revealed on hover -->
+        <div
+          class="grid grid-cols-2 gap-8
+                    max-h-0 overflow-hidden opacity-0
+                    group-hover:max-h-[400px] group-hover:opacity-100
+                    transition-all duration-1000 ease-in-out"
+        >
+          <a href="/gift-card">
+            <div class="rounded-xl overflow-hidden aspect-[786/515]">
+              {
+                card1 && (
+                  <img
+                    src={card1.url}
+                    alt="Get a Gift Card"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                  />
+                )
+              }
+            </div>
+          </a>
+          <a href="https://giftcards.indue.com.au/jamesst/">
+            <div class="rounded-xl overflow-hidden aspect-[786/515]">
+              {
+                card2 && (
+                  <img
+                    src={card2.url}
+                    alt="Check Gift Card Balance"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                  />
+                )
+              }
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Background image -->
+      {
+        bg && (
+          <img
+            src={bg.url}
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover z-0"
+            loading="lazy"
+          />
+        )
+      }
+    </div>
+  </div>
+</div>

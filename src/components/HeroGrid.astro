@@ -1,0 +1,112 @@
+---
+const { images } = Astro.props;
+
+const categories = [
+  { title: "Fashion", href: "/retailers?category=Fashion" },
+  { title: "Food + Drink", href: "/retailers?category=Food%20%2B%20Drink" },
+  {
+    title: "Health + Beauty",
+    href: "/retailers?category=Health%20%2B%20Beauty",
+  },
+  {
+    title: "Lifestyle + Design",
+    href: "/retailers?category=Lifestyle%20%2B%20Design",
+  },
+  { title: "Stay", href: "/stay" },
+  { title: "News", href: "/news" },
+  { title: "Events", href: "/events" },
+  { title: "Gift Card", href: "/gift-card" },
+];
+---
+
+<div class="h-25"></div>
+<section class="p-5">
+  <!-- Centered hover label overlay -->
+  <div class="hover-labels">
+    {categories.map((cat) => <span class="hover-label">{cat.title}</span>)}
+  </div>
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-y-[150px] gap-x-[17.5%]"
+  >
+    {
+      images.map((item, i) => (
+        <article class="card">
+          <a href={categories[i].href} class="block">
+            <p class="text-sm tracking-widest">{categories[i].title}</p>
+            <div class="aspect-[220/290] overflow-hidden">
+              <img
+                src={item.url}
+                alt={categories[i].title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
+<div class="h-25"></div>
+
+<style>
+  section {
+    position: relative;
+  }
+
+  .hover-labels {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .hover-label {
+    position: absolute;
+    letter-spacing: -1px;
+    font-size: 60px;
+    line-height: 1.1;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .card {
+    transition: all 0.5s;
+  }
+
+  /* dim/desaturate/blur all non-hovered cards when any is hovered */
+  section:has(.card:hover) .card:not(:hover) {
+    filter: blur(2px);
+    opacity: 0.2;
+  }
+
+  /* show the matching label for each hovered card */
+  section:has(.card:nth-child(1):hover) .hover-label:nth-child(1) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(2):hover) .hover-label:nth-child(2) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(3):hover) .hover-label:nth-child(3) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(4):hover) .hover-label:nth-child(4) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(5):hover) .hover-label:nth-child(5) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(6):hover) .hover-label:nth-child(6) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(7):hover) .hover-label:nth-child(7) {
+    opacity: 1;
+  }
+  section:has(.card:nth-child(8):hover) .hover-label:nth-child(8) {
+    opacity: 1;
+  }
+</style>
