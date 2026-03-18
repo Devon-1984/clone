@@ -7,19 +7,28 @@ const page = data.landindPage;
 console.log();
 ---
 
-<div class="p-5">
-  <img class="aspect-21/4 w-1/2" src={page.logo.url} />
+<!-- Header: stays in place, gets covered by picture on scroll -->
+<div class="p-5 sticky top-0 z-0 bg-white">
+  <img class="aspect-21/4 w-1/2 mb-5" src={page.logo.url} />
+  <Menu />
 </div>
-<picture class="relative flex">
+
+<!-- Picture: higher z-index so it slides up and stacks over the header -->
+<picture class="relative flex z-10">
   <img
     class="object-cover aspect-2500/1668 h-screen w-screen"
     src={page.hero.url}
   />
   <div class="top-10 right-5 left-auto absolute">
-    <Popup data={data} href="https://sweepwidget.com/c/97261-64fnqs5h" client:load />
+    <Popup
+      data={data}
+      href="https://sweepwidget.com/c/97261-64fnqs5h"
+      client:load
+    />
   </div>
 </picture>
-<div class="sticky top-0 z-10 bg-white w-full p-5">
+
+<div class="sticky top-0 z-20 bg-white w-full p-5">
   <Menu>
     <img slot="prefix" src={page.logo.url} class="w-[80px]" />
   </Menu>

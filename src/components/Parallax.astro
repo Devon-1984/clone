@@ -1,0 +1,39 @@
+---
+const { image } = Astro.props;
+---
+
+<section
+  class="relative h-screen w-full overflow-hidden flex items-end"
+  style={`background-image: url('${image.url}'); background-attachment: fixed; background-position: center; background-size: cover;`}
+>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/20"></div>
+
+  <!-- Top-left date/breadcrumb -->
+  <div class="absolute top-6 left-6 text-white text-xs flex gap-4 z-10">
+    <span>March 19, 2026</span>
+    <span class="flex items-center gap-1">
+      <span class="w-1 h-1 rounded-full bg-white inline-block"></span>
+      James St Up Late 2026
+    </span>
+  </div>
+
+  <!-- Yellow circle decoration -->
+  <div class="absolute top-1/4 right-16 z-10 flex flex-col items-start gap-3">
+    <div class="w-16 h-16 rounded-full bg-yellow-400"></div>
+    <p class="text-white text-sm max-w-[160px] leading-snug">
+      High glamour and even higher spirits.
+    </p>
+    <a href="#" class="text-white text-xs flex items-center gap-1 underline underline-offset-4">
+      <span class="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
+      Discover More
+    </a>
+  </div>
+
+  <!-- Main heading -->
+  <div class="relative z-10 px-8 pb-16 w-full">
+    <h2 class="text-white font-serif text-6xl md:text-8xl leading-none">
+      James St Up Late 2026
+    </h2>
+  </div>
+</section>

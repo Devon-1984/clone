@@ -17,6 +17,7 @@
     "astro": "^5.17.1",
     "datocms-client": "^3.5.24",
     "graphql-request": "^7.4.0",
+    "gsap": "^3.14.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.1"

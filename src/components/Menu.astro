@@ -11,10 +11,10 @@
 
     <div class="nav-links">
       <button class="menu-item">Retailers</button>
-      <a class="menu-item">Events</a>
-      <a class="menu-item">News</a>
-      <a class="menu-item">Sign up</a>
-      <a class="menu-item">Gift Card</a>
+      <a class="menu-item" href="/events">Events</a>
+      <a class="menu-item" href="/news">News</a>
+      <a class="menu-item" href="/sign-up">Sign up</a>
+      <a class="menu-item" href="/gift-card">Gift Card</a>
     </div>
 
     <div class="nav-right">
@@ -97,15 +97,26 @@
 
   /* ── Desktop: show nav, hide hamburger ── */
   @media (min-width: 901px) {
+    .prefix-slot {
+      width: 25%;
+    }
+
     .nav-links {
       display: flex !important;
-      flex: 1;
+      width: 50%;
+      flex-shrink: 0;
       gap: 1.25rem;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+    }
+
+    .nav-right {
+      width: 25%;
+      margin-left: 0;
+      justify-content: flex-end;
     }
 
     .desktop-actions {

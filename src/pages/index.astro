@@ -3,6 +3,7 @@ import Welcome from "../components/Welcome.astro";
 import HeroGrid from "../components/HeroGrid.astro";
 import GiftCard from "../components/GiftCard.astro";
 import Colophon from "../components/Colophon.astro";
+import Parallax from "../components/Parallax.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { executeQuery } from "../lib/datocms";
@@ -25,6 +26,9 @@ const QUERY = `
     giftcard {
       url
     }
+    paralaximg {
+      url
+    }
   }
 }
 `;
@@ -35,6 +39,7 @@ const data = await executeQuery(QUERY);
 <Layout>
   <Welcome data={data} />
   <HeroGrid images={data.landindPage.herogrid} />
+  <Parallax image={data.landindPage.paralaximg} />
   <GiftCard images={data.landindPage.giftcard} />
   <Colophon />
 </Layout>
