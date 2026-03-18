@@ -19,7 +19,7 @@ const categories = [
 ];
 ---
 
-<div class="h-25"></div>
+<div class="h-25 max-[900px]:hidden"></div>
 <section class="p-5">
   <!-- Centered hover label overlay -->
   <div class="hover-labels">
@@ -27,7 +27,7 @@ const categories = [
   </div>
 
   <div
-    class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-y-[150px] gap-x-[17.5%]"
+    class="grid grid-cols-3 min-[901px]:grid-cols-4 min-[901px]:gap-y-[150px] min-[901px]:gap-x-[17.5%] max-[900px]:gap-[45px]"
   >
     {
       images.map((item, i) => (
@@ -47,7 +47,7 @@ const categories = [
     }
   </div>
 </section>
-<div class="h-25"></div>
+<div class="h-25 max-[900px]:hidden"></div>
 
 <style>
   section {
