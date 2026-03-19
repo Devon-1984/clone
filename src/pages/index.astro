@@ -38,8 +38,10 @@ const data = await executeQuery(QUERY);
 
 <Layout>
   <Welcome data={data} />
-  <HeroGrid images={data.landindPage.herogrid} />
-  <Parallax image={data.landindPage.paralaximg} />
-  <GiftCard images={data.landindPage.giftcard} />
-  <Colophon />
+  <div class="relative z-20 bg-white">
+    <HeroGrid images={data.landindPage.herogrid} />
+    <GiftCard images={data.landindPage.giftcard} />
+    <Parallax image={data.landindPage.paralaximg} />
+    <Colophon />
+  </div>
 </Layout>

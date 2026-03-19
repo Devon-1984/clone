@@ -2,38 +2,49 @@
 const { image } = Astro.props;
 ---
 
-<section
-  class="relative h-screen w-full overflow-hidden flex items-end"
-  style={`background-image: url('${image.url}'); background-attachment: fixed; background-position: center; background-size: cover;`}
->
-  <!-- Dark overlay -->
-  <div class="absolute inset-0 bg-black/20"></div>
+<section class="relative h-[150vh] overflow-hidden">
+  <!-- Background: scale up slightly for zoomed-in look, overflow-hidden clips the edges -->
+  <img
+    class="absolute inset-0 w-full h-full object-cover scale-[1.15] origin-center"
+    src={image.url}
+    alt=""
+  />
 
-  <!-- Top-left date/breadcrumb -->
-  <div class="absolute top-6 left-6 text-white text-xs flex gap-4 z-10">
-    <span>March 19, 2026</span>
-    <span class="flex items-center gap-1">
-      <span class="w-1 h-1 rounded-full bg-white inline-block"></span>
+  <!-- Sticky text — locks at top-0 once section hits viewport top -->
+  <div class="sticky top-0 h-[60vh] z-10 text-white flex flex-col p-5">
+
+    <!-- Top row: date + square + title all on one line (left), event info (right) -->
+    <div class="flex justify-between items-start w-full">
+
+      <!-- Left: date ■ title — entire block is a link -->
+      <a href="/events/james-st-up-late-2026" class="flex items-center gap-2 text-xs tracking-widest">
+        <span class="font-bold">March 19, 2026</span>
+        <span class="w-[6px] h-[6px] bg-white inline-block flex-shrink-0"></span>
+        <span>James St Up Late 2026</span>
+      </a>
+
+      <!-- Right: event info panel -->
+      <div class="flex flex-col items-start gap-3 max-w-[200px]">
+        <div class="w-20 h-20 rounded-full bg-yellow-400"></div>
+        <p class="text-sm leading-snug">High glamour and even higher spirits.</p>
+        <a
+          href="/events/james-st-up-late-2026"
+          class="text-xs flex items-center gap-2"
+        >
+          <span class="w-[6px] h-[6px] bg-white inline-block flex-shrink-0"></span>
+          Discover Now
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Big heading pushed to bottom -->
+    <a
+      href="/events/james-st-up-late-2026"
+      class="mt-auto text-center font-serif text-[clamp(2.5rem,8vw,7rem)] leading-none"
+    >
       James St Up Late 2026
-    </span>
-  </div>
-
-  <!-- Yellow circle decoration -->
-  <div class="absolute top-1/4 right-16 z-10 flex flex-col items-start gap-3">
-    <div class="w-16 h-16 rounded-full bg-yellow-400"></div>
-    <p class="text-white text-sm max-w-[160px] leading-snug">
-      High glamour and even higher spirits.
-    </p>
-    <a href="#" class="text-white text-xs flex items-center gap-1 underline underline-offset-4">
-      <span class="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
-      Discover More
     </a>
-  </div>
 
-  <!-- Main heading -->
-  <div class="relative z-10 px-8 pb-16 w-full">
-    <h2 class="text-white font-serif text-6xl md:text-8xl leading-none">
-      James St Up Late 2026
-    </h2>
   </div>
 </section>

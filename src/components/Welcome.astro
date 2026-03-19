@@ -1,5 +1,5 @@
 ---
-import Popup from "./popup";
+import HeroPicture from "./HeroPicture";
 import Menu from "./Menu.astro";
 
 const { data } = Astro.props;
@@ -13,22 +13,10 @@ console.log();
   <Menu />
 </div>
 
-<!-- Picture: higher z-index so it slides up and stacks over the header -->
-<picture class="relative flex z-10">
-  <img
-    class="object-cover aspect-2500/1668 h-screen w-screen"
-    src={page.hero.url}
-  />
-  <div class="top-10 right-5 left-auto absolute">
-    <Popup
-      data={data}
-      href="https://sweepwidget.com/c/97261-64fnqs5h"
-      client:load
-    />
-  </div>
-</picture>
+<!-- Picture: sticky so it stays in place, herogrid slides on top -->
+<HeroPicture heroUrl={page.hero.url} data={data} client:load />
 
-<div class="sticky top-0 z-20 bg-white w-full p-5">
+<div class="sticky top-0 z-30 bg-white w-full p-5">
   <Menu>
     <img slot="prefix" src={page.logo.url} class="w-[80px]" />
   </Menu>
