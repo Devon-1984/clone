@@ -29,19 +29,29 @@ const QUERY = `
     paralaximg {
       url
     }
+    footer {
+      address
+      altEmail
+      email
+      facebook
+      instagram
+    }
   }
 }
 `;
 
-const data = await executeQuery(QUERY);
+const { landindPage } = await executeQuery(QUERY);
+
+const { herogrid, giftcard, paralaximg } = landindPage;
 ---
 
 <Layout>
-  <Welcome data={data} />
+  <Welcome data={landindPage} />
+
   <div class="relative z-20 bg-white">
-    <HeroGrid images={data.landindPage.herogrid} />
-    <GiftCard images={data.landindPage.giftcard} />
-    <Parallax image={data.landindPage.paralaximg} />
+    <HeroGrid images={herogrid} />
+    <GiftCard images={giftcard} />
+    <Parallax image={paralaximg} />
     <Colophon />
   </div>
 </Layout>

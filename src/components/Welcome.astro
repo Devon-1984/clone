@@ -3,7 +3,7 @@ import HeroPicture from "./HeroPicture";
 import Menu from "./Menu.astro";
 
 const { data } = Astro.props;
-const page = data.landindPage;
+const page = data;
 console.log();
 ---
 
@@ -16,7 +16,7 @@ console.log();
 <!-- Picture: sticky so it stays in place, herogrid slides on top -->
 <HeroPicture heroUrl={page.hero.url} data={data} client:load />
 
-<div class="sticky top-0 z-30 bg-white w-full p-5">
+<div class="sticky top-0 z-30 bg-white w-full p-5" style="height: var(--menu-h)">
   <Menu>
     <img slot="prefix" src={page.logo.url} class="w-[80px]" />
   </Menu>
