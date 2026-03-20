@@ -1,0 +1,47 @@
+---
+const { news } = Astro.props;
+const featured = news.slice(0, 2);
+const rest = news.slice(2);
+---
+
+<div class="p-5 mt-5 flex flex-col gap-y-[100px]">
+  <!-- First two: 2-column row -->
+  <div class="grid grid-cols-2 max-[900px]:grid-cols-2 items-end gap-y-[100px]">
+    {featured.map((item: any) => (
+      <a href={`/news/${item.newsslug}`}>
+        <div class="mb-1 text-xs max-[900px]:text-[10px]">
+          <p>{item.newstitle}</p>
+          <p><i>{item.newstype}</i></p>
+        </div>
+        <div class="aspect-[1060/700] bg-[#0000001a] relative overflow-hidden">
+          <img
+            src={item.newsimg.url}
+            alt=""
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <!-- Rest: 4-column grid -->
+  <div class="grid grid-cols-4 max-[900px]:grid-cols-2 items-end gap-y-[100px]">
+    {rest.map((item: any) => (
+      <a href={`/news/${item.newsslug}`}>
+        <div class="mb-1 text-xs max-[900px]:text-[10px]">
+          <p>{item.newstitle}</p>
+          <p><i>{item.newstype}</i></p>
+        </div>
+        <div class="aspect-[3/2] bg-[#0000001a] relative overflow-hidden">
+          <img
+            src={item.newsimg.url}
+            alt=""
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+      </a>
+    ))}
+  </div>
+</div>

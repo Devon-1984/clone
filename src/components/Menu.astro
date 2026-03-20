@@ -1,5 +1,5 @@
 ---
-
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="menu-wrapper">
@@ -11,8 +11,14 @@
 
     <div class="nav-links">
       <button class="menu-item">Retailers</button>
-      <a class="menu-item" href="/events">Events</a>
-      <a class="menu-item" href="/news">News</a>
+      <a
+        class={`menu-item${currentPath.startsWith("/events") ? " is-active" : ""}`}
+        href="/events">Events</a
+      >
+      <a
+        class={`menu-item${currentPath.startsWith("/news") ? " is-active" : ""}`}
+        href="/news">News</a
+      >
       <a class="menu-item" href="/sign-up">Sign up</a>
       <a class="menu-item" href="/gift-card">Gift Card</a>
     </div>
@@ -24,10 +30,32 @@
       </div>
 
       <!-- 2-line hamburger (mobile only) -->
-      <button class="hamburger-btn" aria-label="Open Menu" aria-expanded="false">
-        <svg width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="0" y1="1" x2="26" y2="1" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="0" y1="15" x2="26" y2="15" stroke="currentColor" stroke-width="1.5"/>
+      <button
+        class="hamburger-btn"
+        aria-label="Open Menu"
+        aria-expanded="false"
+      >
+        <svg
+          width="26"
+          height="16"
+          viewBox="0 0 26 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="0"
+            y1="1"
+            x2="26"
+            y2="1"
+            stroke="currentColor"
+            stroke-width="1.5"></line>
+          <line
+            x1="0"
+            y1="15"
+            x2="26"
+            y2="15"
+            stroke="currentColor"
+            stroke-width="1.5"></line>
         </svg>
       </button>
     </div>
@@ -40,9 +68,27 @@
         <slot name="prefix" />
       </div>
       <button class="close-btn" aria-label="Close Menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="1" y1="1" x2="19" y2="19" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="19" y1="1" x2="1" y2="19" stroke="currentColor" stroke-width="1.5"/>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="1"
+            y1="1"
+            x2="19"
+            y2="19"
+            stroke="currentColor"
+            stroke-width="1.5"></line>
+          <line
+            x1="19"
+            y1="1"
+            x2="1"
+            y2="19"
+            stroke="currentColor"
+            stroke-width="1.5"></line>
         </svg>
       </button>
     </div>
@@ -155,7 +201,7 @@
 
   .menu-item::before {
     content: "";
-    background-color: #fff;
+    background-color: transparent;
     width: 6px;
     height: 6px;
     margin-bottom: 1px;
@@ -164,13 +210,22 @@
     flex-shrink: 0;
   }
 
-  .menu-item:hover::before {
-    animation: blink-black 0.5s step-start infinite;
+  .menu-item.is-active::before {
+    background-color: var(--dot-color, black);
   }
 
-  @keyframes blink-black {
-    0%, 100% { background-color: #000; }
-    50%       { background-color: #fff; }
+  .menu-item:hover::before {
+    animation: blink-dot 0.5s step-start infinite;
+  }
+
+  @keyframes blink-dot {
+    0%,
+    100% {
+      background-color: var(--dot-color, black);
+    }
+    50% {
+      background-color: transparent;
+    }
   }
 
   /* ── Full-screen overlay ── */
@@ -237,33 +292,34 @@
 </style>
 
 <script>
-  document.querySelectorAll<HTMLElement>('.menu-wrapper').forEach((wrapper) => {
-    const hamburger = wrapper.querySelector<HTMLButtonElement>('.hamburger-btn');
-    const closeBtn  = wrapper.querySelector<HTMLButtonElement>('.close-btn');
-    const overlay   = wrapper.querySelector<HTMLElement>('.mobile-overlay');
+  document.querySelectorAll<HTMLElement>(".menu-wrapper").forEach((wrapper) => {
+    const hamburger =
+      wrapper.querySelector<HTMLButtonElement>(".hamburger-btn");
+    const closeBtn = wrapper.querySelector<HTMLButtonElement>(".close-btn");
+    const overlay = wrapper.querySelector<HTMLElement>(".mobile-overlay");
 
     if (!hamburger || !overlay) return;
 
     const open = () => {
-      overlay.classList.add('is-open');
-      overlay.setAttribute('aria-hidden', 'false');
-      hamburger.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
+      overlay.classList.add("is-open");
+      overlay.setAttribute("aria-hidden", "false");
+      hamburger.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
     };
 
     const close = () => {
-      overlay.classList.remove('is-open');
-      overlay.setAttribute('aria-hidden', 'true');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+      overlay.classList.remove("is-open");
+      overlay.setAttribute("aria-hidden", "true");
+      hamburger.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
     };
 
-    hamburger.addEventListener('click', open);
-    closeBtn?.addEventListener('click', close);
+    hamburger.addEventListener("click", open);
+    closeBtn?.addEventListener("click", close);
 
     // close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close();
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
     });
   });
 </script>

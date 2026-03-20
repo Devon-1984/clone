@@ -1,0 +1,17 @@
+---
+const { news } = Astro.props;
+---
+
+<section
+  id="latest-news-sentinel"
+  class="sticky top-0 z-0 h-[100vh] flex items-end justify-center pb-10"
+  style={`background-image: url('${news.newsimg.url}'); background-size: cover; background-position: center;`}
+>
+  <a
+    href={`/news/${news.newsslug}`}
+    class="text-white text-center no-underline"
+    style="letter-spacing: -1px; font-size: max(40px, 6.85vw); line-height: 1;"
+  >
+    {news.newstitle}
+  </a>
+</section>
