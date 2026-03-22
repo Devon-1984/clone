@@ -7,13 +7,13 @@
   <div class="flex justify-between flex-wrap">
 
     <!-- Left: 4-column grid — Connect lands under Discover via 5-item wrapping -->
-    <div class="p-5 w-1/2 max-md:w-full">
-      <div class="grid grid-cols-4 max-md:grid-cols-2 w-full gap-4">
+    <div class="p-5 w-1/2 max-[900px]:w-full">
+      <div class="grid grid-cols-4 max-[900px]:grid-cols-2 w-full gap-4">
 
         <!-- Col 1, Row 1: Discover -->
         <div>
-          <p style="font-size: 12px;">Discover</p>
-          <div class="flex flex-col mt-5 gap-1.5 text-sm">
+          <p class="text-[11px]">Discover</p>
+          <div class="flex flex-col mt-5 gap-1 text-sm">
             <a href="/sign-up">Sign Up</a>
             <a href="/retailers?category=Fashion">Fashion</a>
             <a href="/retailers?category=Food%20%2B%20Drink">Food + Drink</a>
@@ -25,8 +25,8 @@
 
         <!-- Col 2, Row 1: James Street -->
         <div>
-          <p style="font-size: 12px;">James Street</p>
-          <div class="flex flex-col mt-5 gap-1.5 text-sm">
+          <p class="text-[11px]">James Street</p>
+          <div class="flex flex-col mt-5 gap-1 text-sm">
             <a href="/events">Events</a>
             <a href="/news">News</a>
             <a href="/about">About Us</a>
@@ -34,9 +34,9 @@
         </div>
 
         <!-- Col 3, Row 1: Contact -->
-        <div>
-          <p style="font-size: 12px;">Contact</p>
-          <div class="flex flex-col mt-5 gap-1.5 text-sm max-w-[250px]">
+        <div class="max-[900px]:mt-7">
+          <p class="text-[11px]">Contact</p>
+          <div class="flex flex-col mt-5 gap-1 text-sm max-w-[250px]">
             <p>Level 1 / 60 James Street<br />Fortitude Valley QLD 4006</p>
             <a href="mailto:info@jamesst.com.au">info@jamesst.com.au</a>
             <a href="mailto:leasing@jamesst.com.au">leasing@jamesst.com.au</a>
@@ -44,12 +44,12 @@
         </div>
 
         <!-- Col 4, Row 1: empty spacer (hidden on mobile) -->
-        <div class="max-md:hidden"></div>
+        <div class="max-[900px]:hidden"></div>
 
         <!-- Col 1, Row 2: Connect — sits directly under Discover -->
         <div class="mt-7">
-          <p style="font-size: 12px;">Connect</p>
-          <div class="flex flex-col mt-5 gap-1.5 text-sm">
+          <p class="text-[11px]">Connect</p>
+          <div class="flex flex-col mt-5 gap-1 text-sm">
             <a href="https://www.facebook.com/jamesstbne" target="_blank" rel="noreferrer">Facebook</a>
             <a href="https://www.instagram.com/jamesstbne/" target="_blank" rel="noreferrer">Instagram</a>
           </div>
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Right: newsletter, max-425px -->
-    <div class="p-5 max-w-[425px] text-sm">
+    <div class="p-5 max-w-[425px] max-[900px]:w-full max-[900px]:max-w-none text-sm">
       <p class="pb-2.5">Get early access to events, dining offers, and exclusive stories.</p>
       <div class="newsletter-form">
         <div class="newsletter-row">
@@ -103,6 +103,9 @@
     </div>
   </a>
 
+  <!-- Spacer: only visible under 900px -->
+  <div class="hidden max-[900px]:block h-[100px]"></div>
+
   <!-- Bottom colophon bar -->
   <div class="flex flex-col">
     <div class="flex justify-between gap-5 p-5 text-xs flex-wrap">
@@ -130,6 +133,12 @@
     opacity: 1;
   }
 
+  @media (max-width: 900px) {
+    .gift-card-img {
+      opacity: 1;
+    }
+  }
+
   .gift-subtitle-clip {
     overflow: hidden;
     height: 1.25rem;
@@ -146,6 +155,12 @@
 
   a:hover .gift-subtitle {
     transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .gift-subtitle {
+      transform: translateY(0);
+    }
   }
 
   /* Newsletter expand on click */
@@ -180,7 +195,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    font-size: inherit;
+    font-size: 13px;
   }
 
   .newsletter-btn::before {

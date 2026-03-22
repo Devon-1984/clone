@@ -3,22 +3,22 @@ import Layout from "../layouts/Layout.astro";
 import LatestNews from "../components/LatestNews.astro";
 import { executeQuery } from "../lib/datocms";
 import NewsHeading from "../components/NewsHeading.astro";
-import NewsGrid from "../components/NewsGrid.astro";
+import NewsGridPaginated from "../components/NewsGridPaginated.jsx";
 import Spacer from "../components/Spacer.astro";
-import Colophon from "../components/Colophon.astro";
+import Footer from "../components/Footer.astro";
 import Menu from "../components/Menu.astro";
 import NewsHeader from "../components/NewsHeader.jsx";
+import HeroGrid from "../components/HeroGrid.astro";
 
 const QUERY = `
 {
   landindPage {
     logo { url }
+    herogrid { url }
   }
-  allNews(orderBy: _createdAt_DESC, first: 10) {
+  allNews(orderBy: _createdAt_DESC, first: 100) {
     newstitle
-    newsimg {
-      url
-    }
+    newsimg { url }
     newstype
     subtitle
     newsdate
@@ -30,13 +30,18 @@ const QUERY = `
 
 const { allNews, landindPage } = await executeQuery(QUERY);
 const latestNews = allNews[0];
-const { logo } = landindPage;
+const { logo, herogrid } = landindPage;
 ---
 
 <Layout>
   <NewsHeader client:load>
     <Menu>
-      <img slot="prefix" src={logo.url} class="w-[80px]" style="filter: var(--logo-filter, brightness(0))" />
+      <img
+        slot="prefix"
+        src={logo.url}
+        class="w-[80px]"
+        style="filter: var(--logo-filter, brightness(0))"
+      />
     </Menu>
   </NewsHeader>
 
@@ -45,7 +50,8 @@ const { logo } = landindPage;
   <div id="news-content" class="relative z-20 bg-white">
     <Spacer />
     <NewsHeading />
-    <NewsGrid news={allNews} />
-    <Colophon />
+    <NewsGridPaginated news={allNews} client:load />
+    <HeroGrid images={herogrid} currentPage="news" />
+    <Footer />
   </div>
 </Layout>

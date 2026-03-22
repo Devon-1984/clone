@@ -1,37 +1,71 @@
 ---
 import Spacer from "./Spacer.astro";
-const { images } = Astro.props;
+const { images, currentPage } = Astro.props;
 
-const categories = [
-  { title: "Fashion", href: "/retailers?category=Fashion" },
-  { title: "Food + Drink", href: "/retailers?category=Food%20%2B%20Drink" },
+const allCategories = [
+  { key: "retailers", title: "Fashion", href: "/retailers?category=Fashion" },
   {
+    key: "retailers",
+    title: "Food + Drink",
+    href: "/retailers?category=Food%20%2B%20Drink",
+  },
+  {
+    key: "retailers",
     title: "Health + Beauty",
     href: "/retailers?category=Health%20%2B%20Beauty",
   },
   {
+    key: "retailers",
     title: "Lifestyle + Design",
     href: "/retailers?category=Lifestyle%20%2B%20Design",
   },
-  { title: "Stay", href: "/stay" },
-  { title: "News", href: "/news" },
-  { title: "Events", href: "/events" },
-  { title: "Gift Card", href: "/gift-card" },
+  { key: "stay", title: "Stay", href: "/stay" },
+  { key: "news", title: "News", href: "/news" },
+  { key: "events", title: "Events", href: "/events" },
+  { key: "giftcard", title: "Gift Card", href: "/gift-card" },
 ];
+
+// Page-nav mode: show 3 cards (Retailers, News, Events, Gift Card minus current page)
+const pageCards = [
+  { key: "retailers", title: "Retailers", href: "/retailers", imageIndex: 0 },
+  { key: "news", title: "News", href: "/news", imageIndex: 5 },
+  { key: "giftcard", title: "Gift Card", href: "/gift-card", imageIndex: 7 },
+  { key: "events", title: "Events", href: "/events", imageIndex: 6 },
+];
+
+const isNavMode = !!currentPage;
+const visibleCards = isNavMode
+  ? pageCards.filter((c) => c.key !== currentPage)
+  : null;
+const categories = isNavMode ? visibleCards : allCategories;
+const cardItems = isNavMode
+  ? visibleCards.map((c) => images[c.imageIndex])
+  : images;
 ---
 
-<Spacer />
-<section class="p-5">
-  <!-- Centered hover label overlay -->
-  <div class="hover-labels">
-    {categories.map((cat) => <span class="hover-label">{cat.title}</span>)}
-  </div>
+{isNavMode ? <div class="h-25 border-t border-[#0000004d]" /> : <Spacer />}
+<section class:list={["p-5", { "nav-mode": isNavMode }]}>
+  <!-- Centered hover label overlay (full grid only) -->
+  {
+    !isNavMode && (
+      <div class="hover-labels">
+        {categories.map((cat) => (
+          <span class="hover-label">{cat.title}</span>
+        ))}
+      </div>
+    )
+  }
 
   <div
-    class="grid grid-cols-3 min-[901px]:grid-cols-4 min-[901px]:gap-y-[150px] min-[901px]:gap-x-[17.5%] max-[900px]:gap-[45px]"
+    class:list={[
+      "grid",
+      isNavMode
+        ? "grid-cols-3 min-[900px]:gap-[20%] gap-11 max-w-[1200px] mx-auto"
+        : "grid-cols-3 min-[901px]:grid-cols-4 min-[901px]:gap-y-[150px] min-[901px]:gap-x-[17.5%] max-[900px]:gap-[45px]",
+    ]}
   >
     {
-      images.map((item, i) => (
+      cardItems.map((item, i) => (
         <article class="card">
           <a href={categories[i].href} class="block">
             <p class="text-sm tracking-widest">{categories[i].title}</p>
@@ -48,7 +82,7 @@ const categories = [
     }
   </div>
 </section>
-<Spacer />
+{isNavMode ? <div class="h-25 border-b border-[#0000004d]" /> : <Spacer />}
 
 <style>
   section {

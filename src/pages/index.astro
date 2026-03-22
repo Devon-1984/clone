@@ -2,7 +2,7 @@
 import Welcome from "../components/Welcome.astro";
 import HeroGrid from "../components/HeroGrid.astro";
 import GiftCard from "../components/GiftCard.astro";
-import Colophon from "../components/Colophon.astro";
+import Footer from "../components/Footer.astro";
 import Parallax from "../components/Parallax.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -52,6 +52,6 @@ const { herogrid, giftcard, paralaximg } = landindPage;
     <HeroGrid images={herogrid} />
     <GiftCard images={giftcard} />
     <Parallax image={paralaximg} />
-    <Colophon />
+    <Footer />
   </div>
 </Layout>

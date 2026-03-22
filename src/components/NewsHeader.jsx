@@ -4,17 +4,39 @@ export default function NewsHeader({ children }) {
   const [past, setPast] = useState(false);
 
   useEffect(() => {
+    const skipPage = parseInt(new URLSearchParams(window.location.search).get("skipPage") ?? "0") || 0;
     const menuH = parseInt(
       getComputedStyle(document.documentElement).getPropertyValue("--menu-h")
     ) || 60;
 
+    if (skipPage > 0) {
+      setPast(true);
+    }
+
     const handleScroll = () => {
+      const currentSkip = parseInt(new URLSearchParams(window.location.search).get("skipPage") ?? "0") || 0;
+      if (currentSkip > 0) { setPast(true); return; }
       setPast(window.scrollY >= window.innerHeight - menuH);
+    };
+
+    const handlePageChange = ({ detail }) => {
+      if (detail.skipPage > 0) {
+        setPast(true);
+        window.removeEventListener("scroll", handleScroll);
+      } else {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+      }
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("news-page-change", handlePageChange);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("news-page-change", handlePageChange);
+    };
   }, []);
 
   return (

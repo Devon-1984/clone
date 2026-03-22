@@ -4,14 +4,52 @@ const { news } = Astro.props;
 
 <section
   id="latest-news-sentinel"
-  class="sticky top-0 z-0 h-[100vh] flex items-end justify-center pb-10"
-  style={`background-image: url('${news.newsimg.url}'); background-size: cover; background-position: center;`}
+  class="sticky top-0 z-0 h-[100vh] overflow-clip relative"
 >
+  <img
+    class="absolute inset-0 w-full h-full object-cover origin-center"
+    src={news.newsimg.url}
+    alt=""
+  />
+
+  <!-- Big title: pinned to the very bottom -->
   <a
     href={`/news/${news.newsslug}`}
-    class="text-white text-center no-underline"
+    class="absolute bottom-0 left-0 right-0 z-10 text-white text-center no-underline p-5"
     style="letter-spacing: -1px; font-size: max(40px, 6.85vw); line-height: 1;"
   >
     {news.newstitle}
   </a>
 </section>
+
+<!-- Bar: outside section, same height, pulls back over it with -100vh margin, scrolls naturally -->
+<div
+  class="h-[100vh] flex flex-col justify-center p-5 text-white relative z-[5] pointer-events-none"
+  style="margin-top: -100vh;"
+>
+  <div class="my-auto pointer-events-auto">
+    <p class="mb-5 text-sm font-bold hidden md:block">Featured News</p>
+    <div class="flex items-center justify-between gap-5 w-full">
+      <a
+        href={`/news/${news.newsslug}`}
+        class="no-underline text-white max-w-[450px] w-full items-center"
+        style="display: grid; grid-template-columns: 0.4fr 1fr;"
+      >
+        <p class="text-xs font-bold m-0">{news.newstype}</p>
+        <div class="flex items-center gap-2 min-w-0">
+          <p class="w-[6px] h-[6px] bg-white flex-shrink-0 m-0"></p>
+          <p class="text-[16px] font-medium truncate m-0">{news.newstitle}</p>
+        </div>
+      </a>
+
+      <a
+        href={`/news/${news.newsslug}`}
+        class="hidden md:flex items-center gap-2 text-xs text-white no-underline flex-shrink-0"
+      >
+        <span class="w-[6px] h-[6px] bg-white inline-block flex-shrink-0"
+        ></span>
+        Discover Now
+      </a>
+    </div>
+  </div>
+</div>
